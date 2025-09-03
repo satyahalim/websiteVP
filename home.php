@@ -3,20 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css?v=1.0">
     <title>Vocalista Paradisso</title>
     <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter Bold', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
 
         .container {
             max-width: 1200px;
@@ -53,53 +42,8 @@
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
         }
-
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 50px;
-            position: relative;
-            z-index: 10;
-            background: rgba(255, 255, 255, 0.2);  /* transparent white */
-            backdrop-filter: blur(10px);           /* adds glass-like blur */
-            /* rounded corners */
-            border-radius: 40px;
-            /* optional: subtle border for contrast */
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            /* make navbar wrap content */
-            padding: 10px 20px;
-            height: fit-content;
-            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.7);
-        }
-
-        .logo {
-           width: 50px;
-           height : 50px;
-           flex: 0 0 auto;
-        }
-
-        .logo img {
-            width: 50px;   /* ukuran logo */
-            height: auto;  /* biar proporsional */
-            object-fit: contain; 
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.8;
-        }
+        
+        /*navbar*/
 
         .hero {
             text-align: left;
@@ -412,79 +356,7 @@
         }
 
         /* Footer */
-        .footer {
-            position : relative;
-            background: url("image/footer.JPG") center/cover no-repeat;
-            color: white;
-            padding: 50px 0 30px;
-            overflow: hidden;
-        }
-
-        .footer::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(44, 62, 80, 0.9); /* atur transparansi */
-            z-index: 0;
-        }
-
-        .footer *{
-            position: relative;
-            z-index:1;
-
-        }
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 30px;
-        }
-
-        .footer-section h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            color: #ecf0f1;
-        }
-
-        .footer-section p,
-        .footer-section a {
-            color: #bdc3c7;
-            text-decoration: none;
-            line-height: 1.8;
-        }
-
-        .footer-section a:hover {
-            color: white;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            background: #34495e;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background: #667eea;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #34495e;
-            padding-top: 20px;
-            text-align: center;
-            color: #bdc3c7;
-          
-        }
+        
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -540,10 +412,10 @@
                    <img src="image/logo.PNG" alt="">
                 </div>
                 <ul class="nav-links">
-                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="home.php">Beranda</a></li>
                     <li><a href="#about">Tentang Kami</a></li>
                     <li><a href="#achievements">Prestasi</a></li>
-                    <li><a href="#news">Berita</a></li>
+                    <li><a href="portalberita.php">Berita</a></li>
                     <li><a href="#gallery">Galeri</a></li>
                     <li><a href="#recruitment">Rekrutmen</a></li>
                 </ul>
@@ -735,11 +607,21 @@ Kegiatan Mahasiswa Paduan Suara di Universitas Pembangunan Nasional
                     Condong Catur, Sleman, Yogyakarta<br></p>
                     
                     <div class="social-links">
-                        <a href="https://www.instagram.com/vocalistaparadisso/" target="_blank" rel="noopener noreferrer">📘</a>
-                        <a href="https://www.tiktok.com/@vocalistaparadisso" target="_blank" rel="noopener noreferrer">📷</a>
-                        <a href="https://x.com/PsmVP_UPN" target="_blank" rel="noopener noreferrer">🐦</a>
-                        <a href="https://www.youtube.com/@VocalistaParadisso" target="_blank" rel="noopener noreferrer" >▶️</a>
-                        <a href="https://www.linkedin.com/company/psm-vocalista-paradisso/posts/?feedView=all" target="_blank" rel="noopener noreferrer">💼</a>
+                        <a href="https://www.instagram.com/vocalistaparadisso/" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/IG.svg" alt="instagram" width="40" height="40">
+                        </a>
+                        <a href="https://www.tiktok.com/@vocalistaparadisso" target="_blank" rel="noopener noreferrer">
+                             <img src="assets/Tiktok.svg" alt="tiktok" width="40" height="40">
+                        </a>
+                        <a href="https://x.com/PsmVP_UPN" target="_blank" rel="noopener noreferrer">
+                             <img src="assets/X.svg" alt="Twitter" width="40" height="40">
+                        </a>
+                        <a href="https://www.youtube.com/@VocalistaParadisso" target="_blank" rel="noopener noreferrer" >
+                             <img src="assets/Ytb.svg" alt="Youtube" width="40" height="40">
+                        </a>
+                        <a href="https://www.linkedin.com/company/psm-vocalista-paradisso/posts/?feedView=all" target="_blank" rel="noopener noreferrer">
+                             <img src="assets/LinkedIn.svg" alt="LinkedIn" width="40" height="40">
+                        </a>
                     </div>
                 </div>
             </div>
