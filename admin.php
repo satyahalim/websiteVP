@@ -19,18 +19,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (move_uploaded_file($_FILES["gambar"]["tmp_name"], $targetFile)) {
         $url = $targetFile;
 
-        $sql = "INSERT INTO artikel (judul, penulis, tanggal, isi, url) 
-                VALUES ('$judul', '$penulis', '$tanggal', '$isi', '$url')";
-        
-        if ($conn->query($sql) === TRUE) {
+        // ✅ Gunakan prepared statement
+        $stmt = $conn->prepare("INSERT INTO artikel (judul, penulis, tanggal, isi, url) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssss", $judul, $penulis, $tanggal, $isi, $url);
+
+        if ($stmt->execute()) {
             echo "<div class='alert success'>Artikel berhasil disimpan!</div>";
         } else {
-            echo "<div class='alert error'>Error: " . $conn->error . "</div>";
+            echo "<div class='alert error'>Error: " . $stmt->error . "</div>";
         }
+
+        $stmt->close();
     } else {
         echo "<div class='alert error'>Upload gambar gagal.</div>";
     }
 }
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>

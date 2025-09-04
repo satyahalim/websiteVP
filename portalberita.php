@@ -135,6 +135,7 @@
             height: 140px;
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 140"><rect width="280" height="140" fill="%23e74c3c"/><text x="50%" y="30%" text-anchor="middle" fill="white" font-size="10" font-family="Arial">11th INTERNATIONAL</text><text x="50%" y="45%" text-anchor="middle" fill="white" font-size="10" font-family="Arial">CHOIR FESTIVAL 2023</text><rect x="20" y="60" width="240" height="60" fill="%23333" opacity="0.6"/><text x="50%" y="85%" text-anchor="middle" fill="white" font-size="8" font-family="Arial">Group photo of choir participants</text></svg>') center/cover;
             position: relative;
+            border-radius: 10px;
         }
         .gallery-image img{
             width: 100%;
@@ -243,6 +244,13 @@
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 45"><rect width="60" height="45" fill="%23e74c3c"/><text x="50%" y="55%" text-anchor="middle" fill="white" font-size="6" font-family="Arial">Choir Event</text></svg>') center/cover;
             border-radius: 5px;
             flex-shrink: 0;
+        }
+
+        .sidebar-image img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
         }
 
         .sidebar-text-content {
@@ -371,6 +379,7 @@
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
+            $id      = $row['id'];
             $judul   = $row['judul'];
             $penulis = $row['penulis'];
             $tanggal = $row['tanggal'];
@@ -388,8 +397,8 @@
                             <p class="gallery-author">by <?php echo $penulis; ?></p>
                             <span class="gallery-date"><?php echo date("d F Y", strtotime($tanggal)); ?></span>
                         </div>
-                        <a href="detail.php?id=<?php echo $row['id']; ?>">
-                            <button class="gallery-btn">Learn More</button>
+                         <a href="detailberita.php?id=<?php echo $row['id']; ?>" class="gallery-btn">
+                        Read
                         </a>
                 </div>
             </div>
@@ -415,22 +424,38 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="sidebar-section">
-                <div class="sidebar-header">
-                    BERITA TERKINI
-                    <span class="sidebar-badge">1 BULAN LALU</span>
-                </div>
-                
-                <div class="sidebar-content">
-                    <div class="sidebar-item">
-                        <div class="sidebar-image"></div>
-                        <div class="sidebar-text-content">
-                            <p class="sidebar-text">Lorem ipsum dolor sit amet. Qui laudantium ratione et similique accusantium dolores</p>
-                            <p class="sidebar-author">by samuel santoso</p>
-                            <button class="sidebar-learn-btn">Learn More</button>
-                        </div>
+        <div class="sidebar-header">
+            BERITA TERKINI
+        </div>
+        <div class="sidebar-content">
+            <?php
+            $sql_sidebar = "SELECT * FROM artikel ORDER BY tanggal DESC LIMIT 5"; 
+            $result_sidebar = $conn->query($sql_sidebar);
+
+            if ($result_sidebar->num_rows > 0) {
+                while ($row = $result_sidebar->fetch_assoc()) {
+                    $judul   = $row['judul'];
+                    $penulis = $row['penulis'];
+                    $url     = $row['url'];
+            ?>
+                <div class="sidebar-item">
+                    <div class="sidebar-image">
+                        <img src="<?php echo $url; ?>" alt="foto">
+                    </div>
+                    <div class="sidebar-text-content">
+                        <p class="sidebar-text"><?php echo $judul; ?></p>
+                        <p class="sidebar-author">by <?php echo $penulis; ?></p>
+                        <button class="sidebar-learn-btn">Read</button>
                     </div>
                 </div>
-            </div>
+            <?php
+                }
+            } else {
+                echo "<p>Tidak ada berita tersedia.</p>";
+            }
+            ?>
+        </div>
+    </div>
         </div>
     </div>
     

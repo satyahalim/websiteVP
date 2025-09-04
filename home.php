@@ -275,6 +275,12 @@
             font-size: 18px;
         }
 
+        .news-image img{
+            height: 100%;
+            width : 100%;
+            object-fit: cover;
+        }
+
         .news-content {
             padding: 25px;
         }
@@ -510,28 +516,40 @@ Kegiatan Mahasiswa Paduan Suara di Universitas Pembangunan Nasional
             <p class="section-subtitle">Update terbaru tentang kegiatan dan pencapaian Vocalista Paradisso</p>
             
             <div class="news-grid">
-                <div class="news-card card-animate">
-                    <div class="news-image">Foto Kegiatan 1</div>
-                    <div class="news-content">
-                        <div class="news-title">Workshop Teknik Vokal Bersama Expert</div>
-                        <div class="news-desc">Kegiatan workshop intensif bersama pakar vokal internasional untuk meningkatkan kemampuan anggota dalam teknik bernyanyi dan performa panggung.</div>
-                    </div>
-                </div>
-                <div class="news-card card-animate">
-                    <div class="news-image">Foto Kegiatan 2</div>
-                    <div class="news-content">
-                        <div class="news-title">Konser Amal untuk Pendidikan</div>
-                        <div class="news-desc">Menyelenggarakan konser amal untuk membantu pendidikan anak-anak kurang mampu di wilayah Yogyakarta dengan antusiasme tinggi dari masyarakat.</div>
-                    </div>
-                </div>
-                <div class="news-card card-animate">
-                    <div class="news-image">Foto Kegiatan 3</div>
-                    <div class="news-content">
-                        <div class="news-title">Kolaborasi dengan Seniman Lokal</div>
-                        <div class="news-desc">Berkolaborasi dengan berbagai seniman lokal Yogyakarta untuk menciptakan karya musik yang memadukan tradisi dan modernitas.</div>
-                    </div>
-                </div>
+                <?php
+                include "koneksi.php";
+
+                // Ambil 3 berita terbaru
+                $sql = "SELECT * FROM artikel ORDER BY tanggal DESC LIMIT 3";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $judul   = $row['judul'];
+                        $isi     = $row['isi'];
+                        $url     = $row['url']; // gambar
+                        $excerpt = substr($isi, 0, 100) . (strlen($isi) > 100 ? "..." : ""); 
+                        ?>
+                        <div class="news-card card-animate">
+                            <div class="news-image">
+                                <img src="<?php echo $url; ?>" alt="<?php echo htmlspecialchars($judul); ?>">
+                            </div>
+                            <div class="news-content">
+                                <div class="news-title"><?php echo $judul; ?></div>
+                                <div class="news-desc"><?php echo $excerpt; ?></div>
+                            </div>
+                        </div>
+
+                        <?php
+                    }
+                } else {
+                    echo "<p>Tidak ada berita tersedia.</p>";
+                }
+                ?>
             </div>
+         <div style="text-align: center; margin-top: 40px;">
+            <a href="portalberita.php" class="btn">Lihat Berita Lainnya</a>
+        </div>
         </div>
     </section>
 
@@ -569,7 +587,7 @@ Kegiatan Mahasiswa Paduan Suara di Universitas Pembangunan Nasional
             </div>
             
             <div style="text-align: center; margin-top: 40px;">
-                <a href="#" class="btn">Lihat Semua Foto</a>
+                <a href="galerifoto.php" class="btn">Lihat Semua Foto</a>
             </div>
         </div>
     </section>

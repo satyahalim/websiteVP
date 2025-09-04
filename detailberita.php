@@ -206,6 +206,22 @@
             color: #94a3b8;
             font-size: 14px;
         }
+
+        .gallery-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 7px 20px;
+            border-radius: 20px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-btn:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
         
         /* Share Section */
         .share-section {
@@ -301,6 +317,12 @@
             color: white;
             font-weight: 600;
         }
+
+        .news-image img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
         
         .news-content {
             padding: 20px;
@@ -366,9 +388,7 @@
 
 <?php
 include 'koneksi.php';
-//$id =  isset($_GET['id']) ? intval($_GET['id']) : 0;   
-$id = 1;
-
+$id =  isset($_GET['id']) ? intval($_GET['id']) : 0;   
 $sql = "SELECT * FROM artikel WHERE id = $id";
 $result = $conn->query($sql);
 
@@ -425,7 +445,7 @@ if ($result->num_rows > 0) {
             <!-- Hero Section -->
             <div class="hero-section">
                 <div class="hero-image">
-                    <img src="image/header2.JPG" alt="">
+                    <img src="<?php echo $url;?>" alt="">
                     <div class="hero-overlay">
                     </div>
                 </div>
@@ -452,41 +472,39 @@ if ($result->num_rows > 0) {
             <section class="related-news">
                 <h2 class="related-title">Berita Terkait</h2>
                 <div class="news-grid">
-                    <article class="news-card">
-                        <div class="news-image">
-                            <span>Group Photo</span>
-                        </div>
-                        <div class="news-content">
-                            <span class="news-category">Berita UKM</span>
-                            <div class="news-date">@darsinuriy</div>
-                            <h3 class="news-title">Lorem ipsum dolor sit amet. Qui deleniti ratione et similique eaque sunt debitis</h3>
-                            <p class="news-excerpt">by dimas budiatra</p>
-                        </div>
-                    </article>
+                    <?php
+                    // Ambil 3 berita terbaru
+                    $sql = "SELECT id, judul, penulis, tanggal, isi, url FROM artikel ORDER BY tanggal DESC LIMIT 3";
+                    $result = $conn->query($sql);
 
-                    <article class="news-card">
-                        <div class="news-image">
-                            <span>Group Photo</span>
-                        </div>
-                        <div class="news-content">
-                            <span class="news-category">Berita UKM</span>
-                            <div class="news-date">@darsinuriy</div>
-                            <h3 class="news-title">Lorem ipsum dolor sit amet. Qui deleniti ratione et similique eaque sunt debitis</h3>
-                            <p class="news-excerpt">by dimas budiatra</p>
-                        </div>
-                    </article>
-
-                    <article class="news-card">
-                        <div class="news-image">
-                            <span>Group Photo</span>
-                        </div>
-                        <div class="news-content">
-                            <span class="news-category">Berita UKM</span>
-                            <div class="news-date">@darsinuriy</div>
-                            <h3 class="news-title">Lorem ipsum dolor sit amet. Qui deleniti ratione et similique eaque sunt debitis</h3>
-                            <p class="news-excerpt">by dimas budiatra</p>
-                        </div>
-                    </article>
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            $id      = $row['id'];
+                            $judul   = $row['judul'];
+                            $penulis = $row['penulis'];
+                            $tanggal = $row['tanggal'];
+                            $isi     = $row['isi'];
+                            $url     = $row['url'];
+                    ?>
+                        <article class="news-card">
+                            <div class="news-image">
+                                <img src="<?php echo $url; ?>" alt="berita terkait">
+                            </div>
+                            <div class="news-content">
+                                <span class="news-category">Berita UKM</span>
+                                <div class="news-date"><?php echo date("d F Y", strtotime($tanggal)); ?></div>
+                                <h3 class="news-title"><?php echo $judul; ?></h3>
+                                <p class="news-excerpt">by <?php echo $penulis; ?></p>
+                                <br>
+                                <a href="detailberita.php?id=<?php echo $row['id']; ?>" class="gallery-btn">Read</a>
+                            </div>
+                        </article>
+                    <?php
+                        }
+                    } else {
+                        echo "<p>Tidak ada berita terkait.</p>";
+                    }
+                    ?>
                 </div>
             </section>
         </main>
