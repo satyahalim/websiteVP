@@ -3,20 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
   <title>Tentang Kami - Vocalista Paradisso</title>
   <style>
-    * {margin:0; padding:0; box-sizing:border-box;}
-    .body { font-family: 'Inter Bold', Tahoma, 'Geneva', Verdana, sans-serif; line-height: 1.6; color: #333; background-color: #f8fafc;;}
-    .container {max-width:1200px; margin:0 auto; padding:0 20px;}
+    
+    .container {
+      max-width:1200px;
+      margin:0 auto; 
+      padding:0 20px;}
 
     /* Header */
-.header {
-  background: url('image/tentangkami.jpg') center/cover no-repeat;
-  color: white;
-  padding: 20px 0;
-  position: relative;
-  overflow: hidden;
-}
+    .header {
+      background: url('image/tentangkami.jpg') center/cover no-repeat;
+      color: white;
+      padding: 20px 0;
+      position: relative;
+      overflow: hidden;
+    }
     .header::before {
       content:"";
       position:absolute; top:0; left:0; right:0; bottom:0;
@@ -37,133 +40,133 @@
     .hero p {font-size:65px; opacity:0.9;}
 
    /* About Section */
-.about {
-  padding: 60px 0;
-  background: #fff;
-}
-.about h2 {
-  text-align: center;
-  font-size: 30px;
-  color: #055b9d;
-  margin-bottom: 20px;
-}
-.about p {
-  font-size: 18px;
-  max-width: 900px;
-  margin: 0 auto 40px auto;
-  text-align: justify;
-  color: #444;
-}
+    .about {
+      padding: 60px 0;
+      background: #fff;
+    }
+    .about h2 {
+      text-align: center;
+      font-size: 30px;
+      color: #055b9d;
+      margin-bottom: 20px;
+    }
+    .about p {
+      font-size: 18px;
+      max-width: 900px;
+      margin: 0 auto 40px auto;
+      text-align: justify;
+      color: #444;
+    }
 
-/* Kepengurusan Section */
-.kepengurusan {
-  padding: 40px 0;
-  background: #f8f9fa;
-}
-.kepengurusan h3 {
-  font-size: 3.5rem;
-  color: #055b9d;
-  margin-bottom: 20px;
-  text-align: center;
-}
-.kepengurusan h4 {
-  margin-bottom: 20px;
-  text-align: center;
-  font-size: 1.5rem;
-}
-.kepengurusan .member {
-  display: flex;
-  align-items: flex-start;
-  background: #fff;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-.kepengurusan .member img {
-  width: 250px;
-  height: 250px;
-  border-radius: 0%;
-  object-fit: cover;
-  margin-right: 20px;
-  margin-top: 4px; 
+    /* Kepengurusan Section */
+    .kepengurusan {
+      padding: 40px 0;
+      background: #f8f9fa;
+    }
+    .kepengurusan h3 {
+      font-size: 3.5rem;
+      color: #055b9d;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .kepengurusan h4 {
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+    .kepengurusan .member {
+      display: flex;
+      align-items: flex-start;
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .kepengurusan .member img {
+      width: 250px;
+      height: 250px;
+      border-radius: 0%;
+      object-fit: cover;
+      margin-right: 20px;
+      margin-top: 4px; 
 
-}
-.kepengurusan-info h4 {
-  margin-bottom: 10px;
-  text-align: left;
-  font-size: 2rem;
-  color: #055b9d;
-}
-.kepengurusan-info p {
-  font-size: 1.1rem;
-  color: #555;
-}
-.kepengurusan-info ul {
-  margin: 5px 0 0 20px;
-  font-size: 1.1rem;
-  padding: 0;
-  list-style: disc;
-  color: #555;
-}
+    }
+    .kepengurusan-info h4 {
+      margin-bottom: 10px;
+      text-align: left;
+      font-size: 2rem;
+      color: #055b9d;
+    }
+    .kepengurusan-info p {
+      font-size: 1.1rem;
+      color: #555;
+    }
+    .kepengurusan-info ul {
+      margin: 5px 0 0 20px;
+      font-size: 1.1rem;
+      padding: 0;
+      list-style: disc;
+      color: #555;
+    }
 
-/* Team Section */
-.team {
-  padding: 60px 0;
-  background: #f8f9fa;
-}
-.team h3 {
-  font-size: 3.5rem;
-  font-weight: 700;
-  color: #055b9d;
-  margin-bottom: 40px;
-  text-align: center;
-}
-.team .member {
-  display: flex;
-  align-items: center;
-  background: #fff;
-  padding: 25px;
-  margin-bottom: 25px;
-  border-radius: 15px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-.member-img img {
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-.member-info {
-  flex: 1;
-  padding: 0 20px;
-}
-.member-info .badge {
-  display: inline-block;
-  padding: 5px 12px;
-  background: #e9f3ff;
-  color: #055b9d;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 20px;
-  margin-bottom: 8px;
-}
-.member-info h4 {
-  margin-bottom: 12px;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #055b9d;
-}
-.member-info p {
-  font-size: 1.2rem;
-  color: #555;
-  line-height: 1.6;
-}
+    /* Team Section */
+    .team {
+      padding: 60px 0;
+      background: #f8f9fa;
+    }
+    .team h3 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #055b9d;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .team .member {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      padding: 25px;
+      margin-bottom: 25px;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .member-img img {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .member-info {
+      flex: 1;
+      padding: 0 20px;
+    }
+    .member-info .badge {
+      display: inline-block;
+      padding: 5px 12px;
+      background: #e9f3ff;
+      color: #055b9d;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 20px;
+      margin-bottom: 8px;
+    }
+    .member-info h4 {
+      margin-bottom: 12px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #055b9d;
+    }
+    .member-info p {
+      font-size: 1.2rem;
+      color: #555;
+      line-height: 1.6;
+    }
 
-/* untuk pembina */
-.member.reverse {
-  flex-direction: row-reverse; 
-}
+    /* untuk pembina */
+    .member.reverse {
+      flex-direction: row-reverse; 
+    }
 
 
  /* Footer */
@@ -249,12 +252,12 @@
       <nav class="nav">
         <div class="logo"><img src="image/logo.png" alt="Logo"></div>
         <ul class="nav-links">
-          <li><a href="#">Beranda</a></li>
-          <li><a href="#">Tentang Kami</a></li>
-          <li><a href="#">Audisi</a></li>
-          <li><a href="#">Prestasi</a></li>
-          <li><a href="#">Berita</a></li>
-          <li><a href="#">Galeri</a></li>
+          <li><a href="home.php">Beranda</a></li>
+          <li><a href="#about">Tentang Kami</a></li>
+          <li><a href="#achievements">Prestasi</a></li>
+          <li><a href="portalberita.php">Berita</a></li>
+          <li><a href="#gallery">Galeri</a></li>
+          <li><a href="#recruitment">Rekrutmen</a></li>
         </ul>
       </nav>
       <div class="hero">
@@ -480,11 +483,21 @@ Kegiatan Mahasiswa Paduan Suara di Universitas Pembangunan Nasional
                     Condong Catur, Sleman, Yogyakarta<br></p>
                     
                     <div class="social-links">
-                        <a href="#">📘</a>
-                        <a href="#">📷</a>
-                        <a href="#">🐦</a>
-                        <a href="#">▶️</a>
-                        <a href="#">💼</a>
+                         <a href="https://www.instagram.com/vocalistaparadisso/" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/IG.svg" alt="instagram" width="40" height="40">
+                        </a>
+                        <a href="https://www.tiktok.com/@vocalistaparadisso" target="_blank" rel="noopener noreferrer">
+                             <img src="assets/Tiktok.svg" alt="tiktok" width="40" height="40">
+                        </a>
+                        <a href="https://x.com/PsmVP_UPN" target="_blank" rel="noopener noreferrer">
+                             <img src="assets/X.svg" alt="Twitter" width="40" height="40">
+                        </a>
+                        <a href="https://www.youtube.com/@VocalistaParadisso" target="_blank" rel="noopener noreferrer" >
+                             <img src="assets/Ytb.svg" alt="Youtube" width="40" height="40">
+                        </a>
+                        <a href="https://www.linkedin.com/company/psm-vocalista-paradisso/posts/?feedView=all" target="_blank" rel="noopener noreferrer">
+                             <img src="assets/LinkedIn.svg" alt="LinkedIn" width="40" height="40">
+                        </a>
                     </div>
                 </div>
             </div>
