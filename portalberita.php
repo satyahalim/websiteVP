@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Choir Gallery Section</title>
+    <title>Portal Berita -  Vocalista Paradisso</title>
     <style>
 
         /* Header */
@@ -350,7 +350,7 @@
                     <li><a href="#about">Tentang Kami</a></li>
                     <li><a href="#achievements">Prestasi</a></li>
                     <li><a href="portalberita.php">Berita</a></li>
-                    <li><a href="#gallery">Galeri</a></li>
+                    <li><a href="galeri.php">Galeri</a></li>
                     <li><a href="#recruitment">Rekrutmen</a></li>
                 </ul>
             </nav>

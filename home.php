@@ -422,7 +422,7 @@
                     <li><a href="#about">Tentang Kami</a></li>
                     <li><a href="#achievements">Prestasi</a></li>
                     <li><a href="portalberita.php">Berita</a></li>
-                    <li><a href="#gallery">Galeri</a></li>
+                    <li><a href="galeri.php">Galeri</a></li>
                     <li><a href="#recruitment">Rekrutmen</a></li>
                 </ul>
             </nav>
@@ -450,35 +450,13 @@ Kegiatan Mahasiswa Paduan Suara di Universitas Pembangunan Nasional
                     <h2>Tentang Kami</h2>
                     <p>Vocalista Paradisso yang berarti "Suara dari Surga" merupakan Unit Kegiatan Mahasiswa Paduan Suara di Universitas Pembangunan Nasional “Veteran” Yogyakarta.</p>
                     <p>Pada mulanya, unit kegiatan ini merupakan paduan suara gabungan dari UKM Kristen dan UKM Katolik. Dengan meningkatnya animo dari mahasiswa yang ingin mengikuti paduan suara maka terbentuk dan terbukalah “Vocalista Paradisso” untuk seluruh mahasiswa UPN “Veteran” Yogyakarta pada tanggal 15 Desember 1993.</p>
-                    <a href="#" class="btn">Selengkapnya</a>
+                    <a href="frame.php" class="btn">Selengkapnya</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item card-animate">
-                    <div class="stat-icon">👥</div>
-                    <div class="stat-number">70+</div>
-                    <div>Anggota Aktif</div>
-                </div>
-                <div class="stat-item card-animate">
-                    <div class="stat-icon">🏆</div>
-                    <div class="stat-number">30+</div>
-                    <div>Prestasi Diraih</div>
-                </div>
-                <div class="stat-item card-animate">
-                    <div class="stat-icon">🎤</div>
-                    <div class="stat-number">100+</div>
-                    <div>Pertunjukan</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+   
     <!-- Achievements Section -->
     <section class="achievements" id="achievements">
         <div class="container">
@@ -587,7 +565,7 @@ Kegiatan Mahasiswa Paduan Suara di Universitas Pembangunan Nasional
             </div>
             
             <div style="text-align: center; margin-top: 40px;">
-                <a href="galerifoto.php" class="btn">Lihat Semua Foto</a>
+                <a href="galeri.php" class="btn">Lihat Semua Foto</a>
             </div>
         </div>
     </section>
