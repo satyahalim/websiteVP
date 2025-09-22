@@ -356,6 +356,33 @@
                 </ul>
             </nav>
     </header>
+
+        <?php
+        include "koneksi.php";
+
+        // How many articles per page
+        $limit = 6;
+
+        // Get current page from URL (default = 1)
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+        // Calculate offset
+        $offset = ($page - 1) * $limit;
+
+        // Count total articles
+        $sql_count = "SELECT COUNT(*) AS total FROM artikel";
+        $result_count = $conn->query($sql_count);
+        $row_count = $result_count->fetch_assoc();
+        $total_articles = $row_count['total'];
+
+        // Count total pages
+        $total_pages = ceil($total_articles / $limit);
+
+        // Fetch articles for current page
+        $sql = "SELECT * FROM artikel ORDER BY tanggal DESC LIMIT $limit OFFSET $offset";
+        $result = $conn->query($sql);
+        ?>
+
    <div class="main-container">
         <!-- Main Content Section -->
         <div class="content-section">
@@ -371,22 +398,20 @@
             <div class="gallery-section">
                 <!-- Gallery Grid -->
                 <div class="gallery-grid">
-    <?php
-    include "koneksi.php";
+                    <?php
+                    // Ambil semua data artikel urut dari terbaru
+                    $sql = "SELECT * FROM artikel ORDER BY tanggal DESC";
+                    $result = $conn->query($sql);
 
-    // Ambil semua data artikel urut dari terbaru
-    $sql = "SELECT * FROM artikel ORDER BY tanggal DESC";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $id      = $row['id'];
-            $judul   = $row['judul'];
-            $penulis = $row['penulis'];
-            $tanggal = $row['tanggal'];
-            $isi     = $row['isi'];
-            $url     = $row['url']; // link gambar
-    ?>
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            $id      = $row['id'];
+                            $judul   = $row['judul'];
+                            $penulis = $row['penulis'];
+                            $tanggal = $row['tanggal'];
+                            $isi     = $row['isi'];
+                            $url     = $row['url']; // link gambar
+                    ?>
             <!-- Gallery Card -->
             <div class="gallery-card">
                 <div class="gallery-image">
@@ -413,11 +438,19 @@
 
                 <!-- Pagination -->
                 <div class="pagination">
-                    <button class="pagination-btn">« Sebelumnya</button>
-                    <button class="pagination-btn active">1</button>
-                    <button class="pagination-btn">2</button>
-                    <button class="pagination-btn">3</button>
-                    <button class="pagination-btn">Selanjutnya »</button>
+                    <?php if ($page > 1): ?>
+                        <a href="?page=<?php echo $page - 1; ?>" class="pagination-btn">« Sebelumnya</a>
+                    <?php endif; ?>
+
+                    <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                        <a href="?page=<?php echo $i; ?>" class="pagination-btn <?php if ($i == $page) echo 'active'; ?>">
+                            <?php echo $i; ?>
+                        </a>
+                    <?php endfor; ?>
+
+                    <?php if ($page < $total_pages): ?>
+                        <a href="?page=<?php echo $page + 1; ?>" class="pagination-btn">Selanjutnya »</a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

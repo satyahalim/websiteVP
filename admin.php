@@ -1,5 +1,17 @@
 <?php
+// --- BAGIAN BARU: KEAMANAN & SESI ---
+session_start();
+
+// Cek apakah pengguna sudah login. Jika belum, tendang ke halaman login.
+if (!isset($_SESSION['admin_logged_in'])) {
+    header('Location: login.php');
+    exit;
+}
+// --- AKHIR BAGIAN BARU ---
+
 include 'koneksi.php';
+
+$pesan = ""; // Variabel untuk notifikasi
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $judul   = $_POST['judul'];
@@ -7,35 +19,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tanggal = $_POST['tanggal'];
     $isi     = $_POST['isi'];
 
-    // Upload file gambar
     $targetDir = "uploads/";
     if (!is_dir($targetDir)) {
         mkdir($targetDir, 0777, true);
     }
-
     $fileName = basename($_FILES["gambar"]["name"]);
-    $targetFile = $targetDir . time() . "_" . $fileName; // kasih timestamp biar unik
+    $targetFile = $targetDir . time() . "_" . $fileName;
 
     if (move_uploaded_file($_FILES["gambar"]["tmp_name"], $targetFile)) {
         $url = $targetFile;
-
-        // ✅ Gunakan prepared statement
         $stmt = $conn->prepare("INSERT INTO artikel (judul, penulis, tanggal, isi, url) VALUES (?, ?, ?, ?, ?)");
         $stmt->bind_param("sssss", $judul, $penulis, $tanggal, $isi, $url);
-
         if ($stmt->execute()) {
-            echo "<div class='alert success'>Artikel berhasil disimpan!</div>";
+            $pesan = "<div class='alert success'>Artikel berhasil disimpan!</div>";
         } else {
-            echo "<div class='alert error'>Error: " . $stmt->error . "</div>";
+            $pesan = "<div class='alert error'>Error: " . $stmt->error . "</div>";
         }
-
         $stmt->close();
     } else {
-        echo "<div class='alert error'>Upload gambar gagal.</div>";
+        $pesan = "<div class='alert error'>Upload gambar gagal.</div>";
     }
 }
-
-$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +58,6 @@ $conn->close();
             margin: 0;
             padding: 30px;
         }
-
         .form-container {
             background: #fff;
             padding: 30px;
@@ -63,20 +66,17 @@ $conn->close();
             width: 100%;
             max-width: 600px;
         }
-
         h2 {
             margin-bottom: 20px;
             color: #00305f;
             text-align: center;
         }
-
         label {
             font-weight: bold;
             color: #333;
             display: block;
             margin-bottom: 6px;
         }
-
         input[type="text"],
         input[type="date"],
         input[type="file"],
@@ -87,15 +87,8 @@ $conn->close();
             border: 1px solid #ccc;
             border-radius: 8px;
             font-size: 14px;
-            transition: border 0.3s;
+            box-sizing: border-box;
         }
-
-        input:focus,
-        textarea:focus {
-            border-color: #00305f;
-            outline: none;
-        }
-
         button {
             width: 100%;
             padding: 12px;
@@ -106,35 +99,44 @@ $conn->close();
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            transition: background 0.3s;
         }
-
-        button:hover {
-            background: #00509e;
-        }
-
         .alert {
             padding: 12px;
             margin-bottom: 15px;
             border-radius: 8px;
-            font-size: 14px;
-            text-align: center;
         }
+        .alert.success { background: #d4edda; color: #155724; }
+        .alert.error { background: #f8d7da; color: #721c24; }
 
-        .alert.success {
-            background: #d4edda;
-            color: #155724;
+        /* --- BAGIAN BARU: STYLE UNTUK LOGOUT --- */
+        .admin-header {
+            text-align: right;
+            margin-bottom: 20px;
         }
-
-        .alert.error {
-            background: #f8d7da;
-            color: #721c24;
+        .logout-button {
+            background-color: #dc3545;
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
+        .logout-button:hover {
+            background-color: #c82333;
+        }
+        /* --- AKHIR BAGIAN BARU --- */
     </style>
 </head>
 <body>
     <div class="form-container">
+        <div class="admin-header">
+            <a href="logout.php" class="logout-button">Logout</a>
+        </div>
         <h2>Tambah Artikel Baru</h2>
+        
+        <?php echo $pesan; // Menampilkan pesan notifikasi ?>
+
         <form method="post" enctype="multipart/form-data">
             <label>Judul:</label>
             <input type="text" name="judul" required>
